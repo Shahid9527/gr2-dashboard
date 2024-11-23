@@ -77,7 +77,7 @@ const TableThree = ({ contactList}) => {
                         </svg>
                       </Link>
                     </button>
-                    <button className="hover:text-primary">
+                    {/* <button className="hover:text-primary">
                       <svg
                         className="fill-current"
                         width="20"
@@ -105,7 +105,7 @@ const TableThree = ({ contactList}) => {
                           fill=""
                         />
                       </svg>
-                    </button>
+                    </button> */}
                     {/* <button className="hover:text-primary">
                       <svg
                         className="fill-current"

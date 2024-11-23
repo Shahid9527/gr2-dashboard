@@ -60,89 +60,94 @@ const EventForm = () => {
   };
 
   return (
-    <form
-      className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md dark:bg-dark-2"
-      onSubmit={handleSubmit}
-    >
-      {/* Image Input */}
-      <div className="mb-4">
-        <label className="block mb-2 text-sm font-medium text-dark dark:text-white" htmlFor="image">
-          Upload Image
-        </label>
-        <input
-          type="file"
-          id="image"
-          name="image"
-          accept="image/*"
-          onChange={handleImageChange}
-          className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-        />
-        {formData.image && (
-          <div className="mt-4">
-            <img
-              src={URL.createObjectURL(formData.image)}
-              alt="Uploaded Preview"
-              className="h-24 w-24 object-cover rounded-lg shadow"
+    <div className="rounded-[10px] border border-stroke bg-white p-4 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card sm:p-7.5">
+      <div className="w-[600px] mx-auto overflow-x-auto"> {/* Set width to 600px */}
+        <form
+          className="w-full table-auto"
+          onSubmit={handleSubmit}
+        >
+          {/* Image Input */}
+          <div className="mb-4">
+            <label className="block mb-2 text-sm font-medium text-dark dark:text-white" htmlFor="image">
+              Upload Image
+            </label>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            />
+            {formData.image && (
+              <div className="mt-4">
+                <img
+                  src={URL.createObjectURL(formData.image)}
+                  alt="Uploaded Preview"
+                  className="h-24 w-24 object-cover rounded-lg shadow"
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Title Input */}
+          <div className="mb-4">
+            <label className="block mb-2 text-sm font-medium text-dark dark:text-white" htmlFor="title">
+              Title
+            </label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              value={formData.title}
+              onChange={handleInputChange}
+              placeholder="Enter title"
+              className="block w-full px-4 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg dark:bg-dark-3 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              required
             />
           </div>
-        )}
+
+          {/* Text Input */}
+          <div className="mb-4">
+            <label className="block mb-2 text-sm font-medium text-dark dark:text-white" htmlFor="text">
+              Text
+            </label>
+            <textarea
+              id="text"
+              name="text"
+              value={formData.text}
+              onChange={handleInputChange}
+              placeholder="Enter text"
+              rows={4}
+              className="block w-full px-4 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg dark:bg-dark-3 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              required
+            ></textarea>
+          </div>
+
+          {/* Error Message */}
+          {error && <p className="text-sm text-red-500 mb-4">{error}</p>}
+
+          {/* Success Message */}
+          {success && <p className="text-sm text-green-500 mb-4">Form submitted successfully!</p>}
+
+          {/* Submit Button */}
+          <div>
+            <button
+              type="submit"
+              className={`w-full px-4 py-2 text-sm font-medium text-white rounded-lg ${loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+                }`}
+              disabled={loading}
+            >
+              {loading ? "Submitting..." : "Submit"}
+            </button>
+          </div>
+        </form>
       </div>
+    </div>
 
-      {/* Title Input */}
-      <div className="mb-4">
-        <label className="block mb-2 text-sm font-medium text-dark dark:text-white" htmlFor="title">
-          Title
-        </label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          value={formData.title}
-          onChange={handleInputChange}
-          placeholder="Enter title"
-          className="block w-full px-4 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg dark:bg-dark-3 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-          required
-        />
-      </div>
 
-      {/* Text Input */}
-      <div className="mb-4">
-        <label className="block mb-2 text-sm font-medium text-dark dark:text-white" htmlFor="text">
-          Text
-        </label>
-        <textarea
-          id="text"
-          name="text"
-          value={formData.text}
-          onChange={handleInputChange}
-          placeholder="Enter text"
-          rows={4}
-          className="block w-full px-4 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg dark:bg-dark-3 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-          required
-        ></textarea>
-      </div>
-
-      {/* Error Message */}
-      {error && <p className="text-sm text-red-500 mb-4">{error}</p>}
-
-      {/* Success Message */}
-      {success && <p className="text-sm text-green-500 mb-4">Form submitted successfully!</p>}
-
-      {/* Submit Button */}
-      <div>
-        <button
-          type="submit"
-          className={`w-full px-4 py-2 text-sm font-medium text-white rounded-lg ${
-            loading
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
-          }`}
-          disabled={loading}
-        >
-          {loading ? "Submitting..." : "Submit"}
-        </button>
-      </div>
-    </form>
   );
 };
 
